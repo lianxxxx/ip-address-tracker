@@ -18,9 +18,10 @@ function App() {
     isp: "",
   });
 
+  const [loading, setLoading] = useState(true);
   const fetchIP = async (ip = "") => {
+    setLoading(true);
     try {
-      // If no IP provided, first get the user's IP from ipify's simple endpoint
       let ipToFetch = ip;
 
       if (!ip) {
@@ -29,7 +30,6 @@ function App() {
         ipToFetch = ipResult.ip;
       }
 
-      // Now call your serverless function with the IP
       const res = await fetch(`/api/ipify?ip=${ipToFetch}`);
       const data = await res.json();
 
@@ -44,6 +44,8 @@ function App() {
       });
     } catch (error) {
       console.error("Failed to fetch IP data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,7 +66,7 @@ function App() {
       <Header />
       <main>
         <SearchBar onSearch={handleSearch} />
-        <InfoCard data={ipData} />
+        <InfoCard data={ipData} loading={loading} />
         <Map
           key={`${ipData.lat}-${ipData.lng}`}
           latitude={ipData.lat}
