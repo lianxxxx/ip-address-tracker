@@ -18,12 +18,10 @@ function App() {
     isp: "",
   });
 
-  const IPIFY_KEY = import.meta.env.VITE_IPIFY_KEY;
   const fetchIP = async (ip = "") => {
     try {
-      const res = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_KEY}&ipAddress=${ip}`
-      );
+      // Call your Vercel serverless function instead
+      const res = await fetch(`/api/ipify?ip=${ip}`);
       const data = await res.json();
       setIpData({
         ip: data.ip,
@@ -44,23 +42,7 @@ function App() {
     const ipInput = e.target.ip.value;
     if (!ipInput) return;
 
-    try {
-      const res = await fetch(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_KEY}&ipAddress=${ipInput}`
-      );
-      const data = await res.json();
-      setIpData({
-        ip: data.ip,
-        lat: data.location.lat,
-        lng: data.location.lng,
-        city: data.location.city,
-        region: data.location.region,
-        timezone: data.location.timezone,
-        isp: data.isp,
-      });
-    } catch (err) {
-      console.error("Invalid IP or API error", err);
-    }
+    await fetchIP(ipInput);
   };
 
   useEffect(() => {
