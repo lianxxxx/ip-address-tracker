@@ -20,9 +20,19 @@ function App() {
 
   const fetchIP = async (ip = "") => {
     try {
-      // Call your Vercel serverless function instead
-      const res = await fetch(`/api/ipify?ip=${ip}`);
+      // If no IP provided, first get the user's IP from ipify's simple endpoint
+      let ipToFetch = ip;
+
+      if (!ip) {
+        const ipResponse = await fetch("https://api.ipify.org?format=json");
+        const ipResult = await ipResponse.json();
+        ipToFetch = ipResult.ip;
+      }
+
+      // Now call your serverless function with the IP
+      const res = await fetch(`/api/ipify?ip=${ipToFetch}`);
       const data = await res.json();
+
       setIpData({
         ip: data.ip,
         lat: data.location.lat,
