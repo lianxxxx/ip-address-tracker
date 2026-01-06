@@ -22,7 +22,7 @@ h6{
 }
 p{
     color: var(--dark-gray);
-      font-weight: 700;
+ 
 }
 button:focus,button:active, button:hover  {
   background-color: hsl(0, 0%, 30%); 

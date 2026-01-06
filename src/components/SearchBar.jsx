@@ -1,20 +1,11 @@
 function SearchBar() {
   return (
     <div className="absolute left-0 top-20 w-full px-6">
-      <form className="relative w-full md:max-w-lg md:mx-auto">
+      <form className="relative w-full md:max-w-md md:mx-auto">
         <input
           type="search"
           placeholder="Search for any IP address or domain"
-          className="
-        w-full
-        bg-white focus:outline-none cursor-pointer
-        pr-14
-        px-4 py-3 md:py-2
-        rounded-xl
-        placeholder:text-gray-500
-        placeholder:italic
-        placeholder:text-sm md:placeholder:text-xs
-      "
+          className=" w-full bg-white focus:outline-none cursor-pointerpr-14 px-4 py-3 md:py-3 rounded-xl placeholder:text-gray-400 placeholder:font-normal placeholder:text-sm  md:placeholder:text-md"
         />
 
         <button
