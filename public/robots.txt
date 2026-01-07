@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ip-address-tracker-react-app-lianxxxx.vercel.app/sitemap.xml

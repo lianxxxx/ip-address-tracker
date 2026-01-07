@@ -60,20 +60,26 @@ function App() {
   useEffect(() => {
     fetchIP();
   }, []);
-
   return (
     <>
       <Header />
       <main>
-        <SearchBar onSearch={handleSearch} />
-        <InfoCard data={ipData} loading={loading} />
-        <Map
-          key={`${ipData.lat}-${ipData.lng}`}
-          latitude={ipData.lat}
-          longitude={ipData.lng}
-        />
+        <section aria-label="IP Address Search">
+          <SearchBar onSearch={handleSearch} />
+        </section>
+
+        <section aria-label="IP Information">
+          <InfoCard data={ipData} loading={loading} />
+        </section>
+
+        <section aria-label="Location Map">
+          <Map
+            key={`${ipData.lat}-${ipData.lng}`}
+            latitude={ipData.lat}
+            longitude={ipData.lng}
+          />
+        </section>
       </main>
-      <footer></footer>
     </>
   );
 }
